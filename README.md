@@ -72,10 +72,9 @@ The dataset contained demographic, financial, behavioral, and insurance-related 
 
 The target variable, `Risk Profile`, consisted of three categories: **Low, Medium, and High**.
 
-
 ### Risk Class Distribution
 
-The labeled dataset contained three risk categories with the following distribution:
+The labeled dataset consisted of three risk categories:
 
 | Risk Category | Proportion |
 |---|---:|
@@ -83,21 +82,15 @@ The labeled dataset contained three risk categories with the following distribut
 | Medium | 29.9% |
 | High | 10.1% |
 
-Low-risk customers represented the majority of the labeled dataset, while High-risk customers accounted for the smallest proportion.
+Low-risk customers represented the majority of the dataset, while High-risk customers accounted for the smallest proportion.
 
 **Analytical Insight**
 
-The uneven class distribution created a challenge for classification, particularly when evaluating less-represented risk categories. A model could achieve reasonable overall accuracy while still performing poorly in identifying specific customer risk groups.
+The unequal distribution of risk categories introduced a class imbalance challenge. This made it important to assess how well the models identified each risk group rather than relying solely on overall accuracy.
 
 **Business Implication**
 
-For underwriting-related analysis, performance should be assessed using class-specific precision, recall, and F1-scores. This helps identify whether the model is overlooking higher-risk customers or incorrectly assigning elevated risk to lower-risk customers.
-
-**Analytical Insight**
-
-The unequal class distribution required particular attention during model development and evaluation.
-
-A model achieving reasonable overall accuracy could still perform poorly on less-represented categories. Therefore, the team examined class-specific metrics rather than relying exclusively on overall accuracy.
+In an underwriting context, classification errors can have different consequences depending on the actual risk category. Evaluating class-specific precision, recall, and F1-scores helps assess whether a model can distinguish higher-risk customers without excessively overestimating risk for other groups.
 
 ### Exploratory Data Analysis
 
