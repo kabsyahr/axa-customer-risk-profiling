@@ -249,11 +249,9 @@ These attributes represent different aspects of a customer's insurance history, 
 
 **Business Insight**
 
-Claims-related and policy-related variables may provide useful signals when evaluating customer risk profiles.
+The prominence of claims history and policy-related variables suggests that historical claim behavior and insurance coverage characteristics may provide useful information for risk assessment.
 
-However, the historical feature importance results only describe patterns learned by the model from the academic dataset. They do not establish causal relationships or demonstrate that the same variables would have equivalent predictive value in real underwriting data.
-
-The findings also suggest the importance of verifying whether relevant features are available and appropriate at the time an underwriting decision is made.
+For underwriting applications, these findings highlight the importance of evaluating customer claims history alongside policy attributes. However, their predictive relevance must be validated using representative data and features available at the time of assessment.
 
 ### 6.3 Similar Customer Characteristics Complicated Risk Classification
 
@@ -273,37 +271,38 @@ This finding highlights the importance of understanding the business meaning and
 
 ---
 
-## 7. Implications for Insurance Underwriting
 
-The project provides several considerations for applying predictive analytics to underwriting-related problems.
+## 7. Business Implications and Recommendations
 
-### Risk Assessment
+The findings highlight three considerations for using customer risk classification to support insurance underwriting.
 
-Claims history and policy characteristics emerged as potentially useful analytical indicators within the historical dataset.
+### 7.1 Prioritize Class-Specific Risk Evaluation
 
-These findings suggest areas worth investigating when designing a more comprehensive risk assessment process.
+The historical Random Forest baseline performed better in identifying Low-risk and High-risk customers than Medium-risk customers.
 
-### Decision Support
+For underwriting analytics, classification performance should therefore be evaluated separately for each risk category. Particular attention should be given to errors that underestimate customer risk, while also monitoring unnecessary risk overestimation.
 
-The difference in predictive performance across risk categories indicates that automated classification should not be evaluated using a single aggregate metric.
+**Recommendation:** Evaluate per-class precision, recall, F1-score, and confusion matrices alongside overall model accuracy. The business consequences of each type of error should be reviewed with underwriting specialists.
 
-An underwriting-related decision support workflow would need to consider class-specific prediction errors and their business consequences.
+### 7.2 Strengthen Data Quality and Risk Segmentation
 
-### Data Quality and Reliability
+The analysis identified overlapping customer characteristics across different risk categories, particularly for Medium-risk customers.
 
-The difficulty in separating Medium-risk customers demonstrates the importance of having informative, consistent, and sufficiently representative features.
+This suggests that the available predictors and risk definitions may not provide sufficient separation between all customer groups.
 
-Further investigation of the data and risk-label definitions would be necessary before applying the approach beyond an academic setting.
+**Recommendation:** Review risk-label consistency, investigate overlapping customer profiles, and assess whether additional relevant customer or policy information could improve class differentiation.
 
-### Model Governance
+### 7.3 Validate Predictors Before Operational Use
 
-Insurance risk classification can affect consequential decisions for customers.
+The historical feature-importance analysis highlighted claims history and selected policy attributes as potentially relevant predictors.
 
-Any operational application would require additional validation, appropriate human oversight, bias and fairness assessment, and a review of how model outputs would be used in underwriting decisions.
+However, model-based feature importance from a fictional dataset does not establish their reliability for real insurance underwriting.
 
-**Overall Takeaway**
+**Recommendation:** Validate predictor relevance, availability at decision time, data quality, and potential fairness concerns using appropriately authorized and representative data.
 
-The central finding of this project is that model selection alone does not determine the reliability of risk classification. Understanding class-level performance, feature quality, and the business implications of prediction errors is equally important.
+### Business Takeaway
+
+The project demonstrates that the value of predictive analytics in underwriting depends not only on selecting a classification algorithm, but also on understanding prediction errors, validating customer risk indicators, and ensuring that model outputs can support responsible decision-making.
 
 ---
 
@@ -353,34 +352,32 @@ The revised example uses `RandomOverSampler` instead of the original SMOTE appro
 
 ---
 
+
 ## 9. Repository Structure
 
-| File / Folder | Description |
-|---|---|
-| [`notebooks/risk_profiling_original_reference.ipynb`](notebooks/risk_profiling_original_reference.ipynb) | Historical notebook documenting the original team workflow, with saved outputs removed |
-| [`notebooks/risk_profiling_revised.ipynb`](notebooks/risk_profiling_revised.ipynb) | Revised modeling pipeline illustrating improved preprocessing and validation practices |
-| [`images/`](images/) | Visualizations derived from historical project results |
-| [`reports/PROJECT_SUMMARY.md`](reports/PROJECT_SUMMARY.md) | Public project summary and methodological notes |
-| [`requirements.txt`](requirements.txt) | Python dependencies |
+This repository contains the original project workflow, a revised methodological example, and supporting documentation.
+
+- **[Original Notebook](notebooks/risk_profiling_original_reference.ipynb)** — Historical team workflow with saved outputs removed.
+- **[Revised Notebook](notebooks/risk_profiling_revised.ipynb)** — Updated preprocessing and validation pipeline for future experimentation.
+- **[Visualizations](images/)** — Charts documenting historical model results.
+- **[Project Summary](reports/PROJECT_SUMMARY.md)** — Overview of the project scope, results, and limitations.
+- **[Requirements](requirements.txt)** — Python dependencies.
 
 ### Running the Revised Notebook
 
-The repository does not include the original AXA case-study dataset.
+The original dataset is not publicly distributed. To execute the revised workflow using authorized data:
 
-To execute the revised workflow:
-
-1. Obtain permission to use the underlying project dataset.
-2. Store the authorized dataset locally in the `data/` folder.
-3. Install dependencies:
+1. Place the dataset in the local `data/` directory.
+2. Install the dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Open `notebooks/risk_profiling_revised.ipynb`.
-5. Run the notebook and independently review the resulting evaluation metrics.
+3. Open `notebooks/risk_profiling_revised.ipynb` and execute the notebook.
+4. Review the evaluation results independently before reporting any new performance metrics.
 
-Any future experimental results should be reported separately from the historical group findings.
+New experimental results should be documented separately from the historical team findings.
 
 ---
 
@@ -400,47 +397,30 @@ Any future experimental results should be reported separately from the historica
 
 ---
 
+
 ## 11. Team Collaboration and Recognition
 
-### Project Team
+### Team Contributions
 
-**AirData Six Consulting — Five-Member Academic Team**
+**AirData Six Consulting | Universitas Airlangga | 2025**
 
-The project was completed collaboratively by five Data Science Technology students from Universitas Airlangga.
+This project was developed collaboratively by a five-member Data Science Technology student team.
 
-Technical development was shared across the team, including:
+My contributions were part of the shared technical workflow, including data exploration, preprocessing, feature engineering, model development, evaluation, interpretation, and presentation of findings.
 
-- Data exploration and preprocessing.
-- Feature engineering.
-- Machine learning model development.
-- Model evaluation and interpretation.
-- Documentation and presentation of analytical findings.
+### Recognition
 
-This repository serves as a personal portfolio record of a collaborative academic project and does not claim sole authorship of the work.
+**Best Presentation — Data Science Consulting Project**
 
-### Project Recognition
-
-**Best Presentation — Academic Data Science Consulting Project**
-
-The team received Best Presentation recognition during the academic project activity.
-
-The recognition reflects the team's communication and presentation of its analytical findings. It is presented as a team achievement rather than an individual award.
+The team received Best Presentation recognition for communicating the project findings during the academic consulting activity.
 
 ---
 
+
 ## 12. Project Scope and Data Confidentiality
 
-This repository presents the methods, historical results, and analytical findings of an academic case study.
+This repository documents an academic insurance risk profiling project conducted collaboratively in an AXA case-study context.
 
-The original dataset, internal project documents, complete group report, and AXA-branded presentation materials are not included.
+The dataset was described as fictional in the original group report. Original customer-level data, complete internal reports, contracts, and AXA-branded presentation materials are not publicly distributed.
 
-The visualizations and numerical results are based on historical team documentation and have not been independently reproduced using the revised notebook.
-
-The project does not claim:
-
-- Deployment of a production underwriting system.
-- Verified improvements in AXA's underwriting performance.
-- Application of the model to real insurance customers.
-- Independently validated performance using the revised pipeline.
-
-The repository is intended to demonstrate collaborative analytical work, machine learning experimentation, model interpretation, and business-oriented evaluation of insurance risk classification.
+The reported results reflect the historical academic project rather than a deployed underwriting solution. A separate revised notebook is provided to document methodological improvements; it has not been executed on the original authorized dataset.
